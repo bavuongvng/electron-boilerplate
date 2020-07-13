@@ -31,9 +31,6 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "dev": "nf start",
-    "prepackage": "rm -rf build app/build",
-    "package": "yarn build && electron-builder",
-    "clean:build": "rm -rf app/build build release dist",
     "start-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-pack": "electron-builder",
     "preelectron-pack": "rm -rf build release && yarn build"
@@ -66,10 +63,13 @@
     "appId": "com.mttjsc.nailsshop.owner",
     "artifactName": "${productName}-${version}.${ext}",
     "directories": {
+      "buildResources": "resources",
       "output": "release"
     },
     "files": [
-      "src/assets/**/*"
+      "build/**/*",
+      "node_modules/**/*",
+      "resources/**/*"
     ],
     "mac": {
       "bundleVersion": "2",
@@ -82,7 +82,7 @@
           "target": "pkg"
         }
       ],
-      "icon": "build/icon.icns"
+      "icon": "resources/icon.icns"
     }
   }
 }

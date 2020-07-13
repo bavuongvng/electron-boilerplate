@@ -7,8 +7,14 @@ const isDev = require("electron-is-dev");
 
 let mainWindow;
 
+app.enableSandbox();
+
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 900, height: 680 });
+  mainWindow = new BrowserWindow({
+    width: 900,
+    height: 680,
+    webPreferences: { sandbox: true },
+  });
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
